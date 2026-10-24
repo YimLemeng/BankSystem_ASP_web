@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-100 font-sans;
+  }
+}
+
+/* Hide scrollbar completely while maintaining full scrolling functionality */
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+html, body, main, div {
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.8) 100%);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   OFFICIAL BANK STATEMENT PRINT STYLES
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm 10mm !important;
+  }
+
+  /* Force pure white background, crisp dark text, proper Khmer line height */
+  html, body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 9.5pt !important;
+    line-height: 1.5 !important;
+    font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', system-ui, sans-serif !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide app navigation, headers, footers, form inputs, buttons */
+  header,
+  aside,
+  nav,
+  .no-print,
+  .print-hidden,
+  button,
+  input,
+  select {
+    display: none !important;
+  }
+
+  /* Unset dark container constraints */
+  .min-h-screen,
+  .h-screen {
+    height: auto !important;
+    min-height: auto !important;
+    background: #ffffff !important;
+    overflow: visible !important;
+  }
+
+  div, main, section {
+    overflow: visible !important;
+  }
+
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    border: none !important;
+  }
+
+  /* Printable statement layout with internal document margins */
+  .official-statement-document {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+  }
+
+  .statement-screen-only {
+    display: none !important;
+  }
+
+  /* Prevent row splitting across pages */
+  tr {
+    page-break-inside: avoid;
+  }
+
+  .official-statement-document table,
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    table-layout: fixed !important;
+  }
+
+  .official-statement-document th,
+  .official-statement-document td {
+    padding: 5px 6px !important;
+    font-size: 8pt !important;
+    line-height: 1.35 !important;
+    border-color: #cbd5e1 !important;
+    min-width: 0 !important;
+  }
+
+  .official-statement-document .overflow-x-auto {
+    overflow: visible !important;
+  }
+
+  .official-statement-document .whitespace-nowrap {
+    white-space: nowrap !important;
+  }
+}
