@@ -89,14 +89,6 @@ export default function Register() {
               )}
 
               <form onSubmit={handleSubmit} className="space-y-3.5">
-                {/* Role Badge */}
-                <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-slate-900/90 border border-slate-800 text-xs">
-                  <span className="text-slate-400 font-medium">Assigned System Role:</span>
-                  <span className="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30 font-mono">
-                    Teller (Branch Staff)
-                  </span>
-                </div>
-
                 {/* Username */}
                 <div>
                   <label className="block text-xs font-semibold text-slate-300 mb-1">
