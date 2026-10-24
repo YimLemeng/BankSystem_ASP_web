@@ -228,6 +228,7 @@ const translations = {
       phonePlaceholder: 'e.g. 012333444 or +85512333444',
       cancelBtn: 'Cancel',
       createProfileBtn: 'Create Customer Profile',
+      creatingProfileBtn: 'Creating Customer Profile...',
     },
 
     // --- PROFILE PAGE ---
@@ -569,6 +570,7 @@ const translations = {
       phonePlaceholder: 'ឧ. 012333444 ឬ +85512333444',
       cancelBtn: 'បោះបង់',
       createProfileBtn: 'ចុះឈ្មោះអតិថិជន',
+      creatingProfileBtn: 'កំពុងបង្កើតគណនីអតិថិជន...',
     },
 
     // --- PROFILE PAGE ---

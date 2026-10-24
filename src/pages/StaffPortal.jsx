@@ -35,6 +35,7 @@ export default function StaffPortal() {
 
   // Customer Onboarding state
   const [showCreateCustModal, setShowCreateCustModal] = useState(false);
+  const [isSubmittingCustomer, setIsSubmittingCustomer] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -192,9 +193,15 @@ export default function StaffPortal() {
 
   const handleCreateCustomer = async (e) => {
     e.preventDefault();
+    setIsSubmittingCustomer(true);
     setActionLoading(true);
     setMessage('');
     setError('');
+    showLoading(
+      t('staff.creatingProfileBtn') || 'Creating Customer Profile...',
+      'Submitting KYC customer registration to banking network...',
+      1000
+    );
     try {
       const res = await customerService.createCustomer({
         phoneNumber: phoneNumber.trim(),
@@ -215,6 +222,7 @@ export default function StaffPortal() {
     } catch (err) {
       setError(err.response?.data?.detail || err.response?.data?.message || 'Failed to create customer profile.');
     } finally {
+      setIsSubmittingCustomer(false);
       setActionLoading(false);
     }
   };
@@ -813,10 +821,17 @@ export default function StaffPortal() {
 
           <button
             type="submit"
-            disabled={actionLoading}
-            className="w-full mt-4 py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold uppercase tracking-wider disabled:opacity-50"
+            disabled={isSubmittingCustomer || actionLoading}
+            className="w-full mt-4 py-3 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-bold uppercase tracking-wider disabled:opacity-50 transition-all flex items-center justify-center gap-2 shadow-lg shadow-amber-600/25 active:scale-[0.99]"
           >
-            {t('staff.createProfileBtn')}
+            {isSubmittingCustomer ? (
+              <>
+                <RefreshCw className="w-4 h-4 animate-spin text-white" />
+                <span>{t('staff.creatingProfileBtn') || 'Creating Customer Profile...'}</span>
+              </>
+            ) : (
+              <span>{t('staff.createProfileBtn')}</span>
+            )}
           </button>
         </form>
       </Modal>
