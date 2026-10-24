@@ -1,7 +1,3 @@
-# ==============================================================================
-# Enterprise Banking System - Frontend Docker Compose Configuration
-# ==============================================================================
-
 services:
   frontend:
     build:

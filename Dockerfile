@@ -1,6 +1,3 @@
-# ==============================================================================
-# Enterprise Banking System - Frontend Dockerfile (React + Vite + Nginx)
-# ==============================================================================
 
 # Stage 1: Build static assets
 FROM node:20-alpine AS build
