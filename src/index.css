@@ -55,12 +55,16 @@ html, body, main, div {
     print-color-adjust: exact !important;
   }
 
-  /* Hide app navigation, headers, footers, form inputs, buttons */
+  /* Hide app navigation, headers, footers, form inputs, buttons, and all modals/overlays */
   header,
   aside,
   nav,
   .no-print,
   .print-hidden,
+  .hidden-print,
+  [role="dialog"],
+  [aria-modal="true"],
+  .fixed.inset-0,
   button,
   input,
   select {

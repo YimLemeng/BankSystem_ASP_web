@@ -7,7 +7,7 @@ export default function GlobalLoadingModal() {
   if (!isLoading) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-md animate-fadeIn transition-all">
+    <div className="no-print print:hidden fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-md animate-fadeIn transition-all">
       <div className="glass-card rounded-2xl shadow-2xl border border-slate-700/70 p-7 max-w-sm w-full mx-4 text-center relative overflow-hidden transform animate-scaleUp">
         {/* Subtle emerald fintech glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-36 h-20 bg-emerald-500/15 rounded-full blur-2xl pointer-events-none" />

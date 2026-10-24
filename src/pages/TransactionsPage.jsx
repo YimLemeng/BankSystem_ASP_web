@@ -205,10 +205,7 @@ export default function TransactionsPage() {
   };
 
   const handlePrint = () => {
-    showLoading('Preparing Official Statement Printout...', 'Formatting statement for high-resolution print...', 400);
-    setTimeout(() => {
-      window.print();
-    }, 100);
+    window.print();
   };
 
   return (
