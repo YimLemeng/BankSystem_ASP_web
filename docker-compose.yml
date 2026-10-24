@@ -1,0 +1,13 @@
+# ==============================================================================
+# Enterprise Banking System - Frontend Docker Compose Configuration
+# ==============================================================================
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: banking_frontend_app
+    restart: unless-stopped
+    ports:
+      - "3000:80"
