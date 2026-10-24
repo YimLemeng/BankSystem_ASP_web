@@ -200,8 +200,9 @@ export default function StaffPortal() {
     showLoading(
       t('staff.creatingProfileBtn') || 'Creating Customer Profile...',
       'Submitting KYC customer registration to banking network...',
-      1000
+      1200
     );
+    const submitStart = Date.now();
     try {
       const res = await customerService.createCustomer({
         phoneNumber: phoneNumber.trim(),
@@ -211,6 +212,11 @@ export default function StaffPortal() {
         nationalIdOrPassport: nationalId.trim(),
         address: address.trim(),
       });
+      // Guarantee at least 600ms so the loading animation is visibly clear and smooth
+      const elapsed = Date.now() - submitStart;
+      if (elapsed < 600) {
+        await new Promise((resolve) => setTimeout(resolve, 600 - elapsed));
+      }
       setMessage(`Customer profile created! Customer Number: ${res.data?.customerNumber} (${res.data?.firstName} ${res.data?.lastName})`);
       setShowCreateCustModal(false);
       setPhoneNumber('');
@@ -822,15 +828,18 @@ export default function StaffPortal() {
           <button
             type="submit"
             disabled={isSubmittingCustomer || actionLoading}
-            className="w-full mt-4 py-3 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-bold uppercase tracking-wider disabled:opacity-50 transition-all flex items-center justify-center gap-2 shadow-lg shadow-amber-600/25 active:scale-[0.99]"
+            className="w-full mt-4 py-3 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-bold uppercase tracking-wider disabled:opacity-60 transition-all flex items-center justify-center gap-2.5 shadow-lg shadow-amber-600/30 active:scale-[0.99] cursor-pointer disabled:cursor-not-allowed"
           >
             {isSubmittingCustomer ? (
               <>
-                <RefreshCw className="w-4 h-4 animate-spin text-white" />
+                <RefreshCw className="w-5 h-5 animate-spin text-white" />
                 <span>{t('staff.creatingProfileBtn') || 'Creating Customer Profile...'}</span>
               </>
             ) : (
-              <span>{t('staff.createProfileBtn')}</span>
+              <>
+                <UserPlus className="w-4 h-4 text-white/90" />
+                <span>{t('staff.createProfileBtn')}</span>
+              </>
             )}
           </button>
         </form>
